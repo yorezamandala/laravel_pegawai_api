@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html>
 
 <head>
@@ -7,7 +7,17 @@
 </head>
 
 <body>
-    <div class="container mt-5">
+    
+</body>
+
+</html> --}}
+
+@extends('layouts.master')
+
+@section('title', 'Home')
+
+@section('content')
+    <div class="container">
         <h2>Data Pegawai</h2>
 
         @if (session('success'))
@@ -54,6 +64,4 @@
             </tbody>
         </table>
     </div>
-</body>
-
-</html>
+@endsection

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html>
 <head>
     <title>Tambah Pegawai</title>
@@ -8,14 +8,14 @@
 <div class="container mt-5">
     <h2>Tambah Pegawai Baru</h2>
 
-    @if(session('success'))
+    @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    @if($errors->any())
+    @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
-            @foreach($errors->all() as $error)
+            @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
             @endforeach
             </ul>
@@ -41,4 +41,70 @@
     </form>
 </div>
 </body>
+</html> --}}
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tambah Pegawai</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 font-sans antialiased">
+    <div class="min-h-screen flex items-center justify-center px-4">
+        <div class="max-w-md w-full bg-white p-8 rounded-2xl shadow-lg">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Tambah Data Pegawai</h2>
+
+            @if (session('success'))
+                <div class="bg-green-100 text-green-800 px-4 py-2 rounded mb-4">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if ($errors->any())
+                <div class="bg-red-100 text-red-800 px-4 py-2 rounded mb-4">
+                    <ul class="list-disc pl-5">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form action="{{ route('pegawai.store') }}" method="POST" class="space-y-5">
+                @csrf
+                <div>
+                    <label class="block text-gray-600 mb-1">Nama</label>
+                    <input type="text" name="nama" value="{{ old('nama') }}"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        placeholder="Contoh: Siti Nurhaliza" required>
+                </div>
+
+                <div>
+                    <label class="block text-gray-600 mb-1">NIP</label>
+                    <input type="text" name="nip" value="{{ old('nip') }}"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        placeholder="Contoh: 198209102005041001" required>
+                </div>
+
+                <div>
+                    <label class="block text-gray-600 mb-1">Jabatan</label>
+                    <input type="text" name="jabatan" value="{{ old('jabatan') }}"
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        placeholder="Contoh: Pranata Komputer Ahli Pertama" required>
+                </div>
+
+                <div class="flex justify-between mt-6">
+                    <a href="{{ route('pegawai.index') }}" class="text-sm text-gray-600 hover:underline">← Kembali</a>
+                    <button type="submit"
+                        class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition duration-200">
+                        Simpan Data
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
 </html>
